@@ -1,16 +1,14 @@
 /* global hep */
 
 (function(ctx) {
-    /**
-     *
-     */
+
     function Analytics(options) {
         /* eslint-disable */
         
          /**
          * HEP Analytics
          */
-         /*     
+          
         const hep = function(type,event,subset,data){
             console.log('GA',type,event,subset,data);
             // SHIP TO REMOTE w/ FETCH
@@ -116,7 +114,7 @@
      * lib-jitsi-meet.
      */
     Analytics.prototype.sendEvent = function(event) {
-        if (!event || !ga) {
+        if (!event || !hep) {
             return;
         }
 
