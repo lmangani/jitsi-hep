@@ -59,12 +59,20 @@
             data.device_id = session;
             data.ip = session_ip;
             // SHIP TO LOCAL/REMOTE COLLECTOR
+<<<<<<< HEAD
              fetch('https://"+window.location.hostname||'hep.hepic.tel'+":9069', {
+=======
+             fetch("https://" + (window.location.hostname || "hep.hepic.tel") + ":9069", { 
+>>>>>>> f3e75660c6e750e66177fc7b70b6d8a6255b7855
                 method: 'POST',
                 mode: 'no-cors',
                 body: JSON.stringify(data)
               }).catch(
+<<<<<<< HEAD
                  error => console.debug(error)
+=======
+                 error => console.debug(error) // Handle the error response object
+>>>>>>> f3e75660c6e750e66177fc7b70b6d8a6255b7855
               );      
         }
         window.hep = hep;
@@ -173,8 +181,7 @@
         }
 
         // Filter out any undesired statistics
-        if (event.action === 'e2e_rtt' || event.action === 'rtp.stats'
-            || event.action === 'rtt.by.region') {
+        if (event.type === 'ui') {
             return;
         }
 
