@@ -1,7 +1,5 @@
 /* global hep */
 
-
-
 (function(ctx) {
 
     function Analytics(options) {
@@ -16,6 +14,7 @@
             // SHIP TO LOCAL/REMOTE COLLECTOR
              fetch('https://"+window.location.hostname||'hep.hepic.tel'+":9069', { // Your POST endpoint
                 method: 'POST',
+                mode: 'no-cors',
                 body: JSON.stringify(data) // This is your file object
               }).catch(
                 error => console.log(error) // Handle the error response object
