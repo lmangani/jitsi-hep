@@ -173,8 +173,7 @@
         }
 
         // Filter out any undesired statistics
-        if (event.action === 'e2e_rtt' || event.action === 'rtp.stats'
-            || event.action === 'rtt.by.region') {
+        if (event.type === 'ui') {
             return;
         }
 
