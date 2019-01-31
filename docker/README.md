@@ -8,10 +8,13 @@ This compose demo outlines the basics to connect browser-side events to an HEP c
 * PASTASH (https TCP/9069)
 
 ## Jitsi Web Config
-If needed, extend the Jitsi web configuration with any other event shipper using the `analyticsScriptUrls` block:
+This demo leverages the Jitsi web `"analytics handlers"` to inject an event shipper into the live application:
 ```
-// A list of scripts to load as lib-jitsi-meet "analytics handlers".
     analyticsScriptUrls: [
          "https://gitcdn.xyz/repo/lmangani/jitsi-hep/master/jitsi-hep.js"
      ],
 ```
+
+### Notice
+  * Browser might return CORS related events when running on different domains/hosts
+  * Events are as-is without correlation, identifiers, etc
