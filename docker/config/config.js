@@ -276,10 +276,10 @@ var config = {
 
     // enables callstatsUsername to be reported as statsId and used
     // by callstats as repoted remote id
-    enableStatsID: true
+    enableStatsID: true,
 
     // enables sending participants display name to callstats
-    enableDisplayNameInStats: true
+    enableDisplayNameInStats: true,
 
 
     // Privacy
@@ -336,7 +336,7 @@ var config = {
 
     // A list of scripts to load as lib-jitsi-meet "analytics handlers".
     analyticsScriptUrls: [
-         "https://cdn.jsdelivr.net/gh/lmangani/jitsi-hep@hep/jitsi-hep.js"
+	 "https://cdn.jsdelivr.net/gh/lmangani/jitsi-hep@git/jitsi-hep.js"
      ],
 
     // The Google Analytics Tracking ID
