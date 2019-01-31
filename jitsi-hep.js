@@ -44,7 +44,7 @@
         }
 
         // Tag Session
-        let session_ip = '0.0.0.0';
+        let session_ip = false;
         getUserIP(function(ip){
           session_ip = ip;
         });
@@ -52,12 +52,15 @@
          * HEP Analytics
          */
         var session = 'unknown';
+	var userProps = false;
         const hep = function(type,event,subset,data){
-            // console.log('HEP-REQ',type,event,data);
+
             // Attempt using device_id as Client identifier for statistics
             if(data.attributes && data.attributes.device_id) session = data.attributes.device_id;
-            data.device_id = session;
-            data.ip = session_ip;
+            if(session) data.device_id = session;
+            if(ip) data.ip = session_ip;
+	    if(userProps) data.user = userProps;
+
             // SHIP TO LOCAL/REMOTE COLLECTOR
              fetch("https://" + (window.location.hostname || "hep.hepic.tel") + ":9069", { 
                 method: 'POST',
@@ -158,6 +161,15 @@
         }
 
         return label;
+    };
+
+    /**
+     * Receives injected User Properties from Analytics
+     * @private
+     */
+    Analytics.prototype.setUserProperties = function(newProps) {
+	userProps = newProps
+        return;
     };
 
     /**
