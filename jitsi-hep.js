@@ -64,7 +64,7 @@
                 mode: 'no-cors',
                 body: JSON.stringify(data) // This is your file object
               }).catch(
-                // error => console.log(error) // Handle the error response object
+                 error => console.debug(error) // Handle the error response object
               );      
         }
         window.hep = hep;
