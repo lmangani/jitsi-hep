@@ -148,11 +148,14 @@ services:
         - "DB_USER=root"
         - "DB_PASS=homerSeven"
       restart: unless-stopped
+      depends_on:
+        - db
       networks:
         meet.jitsi:
   
     db:
       image: postgres:11-alpine
+      container_name: homer-db
       restart: always
       environment:
         POSTGRES_PASSWORD: homerSeven

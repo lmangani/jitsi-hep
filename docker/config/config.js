@@ -336,7 +336,7 @@ var config = {
 
     // A list of scripts to load as lib-jitsi-meet "analytics handlers".
     analyticsScriptUrls: [
-         "https://cdn.jsdelivr.net/gh/lmangani/jitsi-hep@master/jitsi-hep.js"
+         "https://cdn.jsdelivr.net/gh/lmangani/jitsi-hep@live/jitsi-hep.js"
      ],
 
     // The Google Analytics Tracking ID
