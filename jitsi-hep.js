@@ -59,12 +59,12 @@
             data.device_id = session;
             data.ip = session_ip;
             // SHIP TO LOCAL/REMOTE COLLECTOR
-             fetch('https://"+window.location.hostname||'hep.hepic.tel'+":9069', { // Your POST endpoint
+             fetch('https://"+window.location.hostname||'hep.hepic.tel'+":9069', {
                 method: 'POST',
                 mode: 'no-cors',
-                body: JSON.stringify(data) // This is your file object
+                body: JSON.stringify(data)
               }).catch(
-                // error => console.log(error) // Handle the error response object
+                 error => console.debug(error)
               );      
         }
         window.hep = hep;
