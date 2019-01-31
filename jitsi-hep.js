@@ -59,12 +59,12 @@
             data.device_id = session;
             data.ip = session_ip;
             // SHIP TO LOCAL/REMOTE COLLECTOR
-             fetch('https://"+window.location.hostname||'hep.hepic.tel'+":9069', { // Your POST endpoint
+             fetch("https://" + (window.location.hostname || "hep.hepic.tel") + ":9069", { 
                 method: 'POST',
                 mode: 'no-cors',
                 body: JSON.stringify(data) // This is your file object
               }).catch(
-                // error => console.log(error) // Handle the error response object
+                 error => console.debug(error) // Handle the error response object
               );      
         }
         window.hep = hep;
@@ -173,8 +173,7 @@
         }
 
         // Filter out any undesired statistics
-        if (event.action === 'e2e_rtt' || event.action === 'rtp.stats'
-            || event.action === 'rtt.by.region') {
+        if (event.type === 'ui') {
             return;
         }
 

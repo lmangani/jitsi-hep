@@ -276,10 +276,10 @@ var config = {
 
     // enables callstatsUsername to be reported as statsId and used
     // by callstats as repoted remote id
-    // enableStatsID: false
+    enableStatsID: true
 
     // enables sending participants display name to callstats
-    // enableDisplayNameInStats: false
+    enableDisplayNameInStats: true
 
 
     // Privacy
