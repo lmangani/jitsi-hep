@@ -13,8 +13,8 @@
           
         const hep = function(type,event,subset,data){
             console.log('HEP-REQ',type,event,data);
-            // SHIP TO REMOTE w/ FETCH
-             fetch('https://hep.hepic.tel:9069', { // Your POST endpoint
+            // SHIP TO LOCAL/REMOTE COLLECTOR
+             fetch('https://"+window.location.hostname||'hep.hepic.tel'+":9069', { // Your POST endpoint
                 method: 'POST',
                 body: JSON.stringify(data) // This is your file object
               }).catch(
