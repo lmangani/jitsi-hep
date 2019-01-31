@@ -1,5 +1,7 @@
 /* global hep */
 
+
+
 (function(ctx) {
 
     function Analytics(options) {
@@ -10,8 +12,14 @@
          */
           
         const hep = function(type,event,subset,data){
-            console.log('GA',type,event,subset,data);
+            console.log('HEP-REQ',type,event,data);
             // SHIP TO REMOTE w/ FETCH
+             fetch('https://hep.hepic.tel:9069', { // Your POST endpoint
+                method: 'POST',
+                body: JSON.stringify(data) // This is your file object
+              }).catch(
+                error => console.log(error) // Handle the error response object
+              );      
         }
         window.hep = hep;
         
