@@ -58,7 +58,7 @@
             // Attempt using device_id as Client identifier for statistics
             if(data.attributes && data.attributes.device_id) session = data.attributes.device_id;
             if(session) data.device_id = session;
-            if(ip) data.ip = session_ip;
+            if(session_ip) data.ip = session_ip;
 	    if(userProps) data.user = userProps;
 
             // SHIP TO LOCAL/REMOTE COLLECTOR
