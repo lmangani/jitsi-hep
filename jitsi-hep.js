@@ -79,8 +79,7 @@
      * Extracts the integer to use for an event's value field
      * from a lib-jitsi-meet analytics event.
      * @param {Object} event - The lib-jitsi-meet analytics event.
-     * @returns {Object} - The integer to use for the 'value' of a Google
-     * Analytics event.
+     * @returns {Object} - The integer to use for the 'value'
      * @private
      */
     Analytics.prototype._extractAction = function(event) {
@@ -119,8 +118,8 @@
      * Extracts the integer to use for an event's value field
      * from a lib-jitsi-meet analytics event.
      * @param {Object} event - The lib-jitsi-meet analytics event.
-     * @returns {Object} - The integer to use for the 'value' of a Google
-     * Analytics event, or NaN if the lib-jitsi-meet event doesn't contain a
+     * @returns {Object} - The integer to use for the 'value' of an
+     * event, or NaN if the lib-jitsi-meet event doesn't contain a
      * suitable value.
      * @private
      */
@@ -137,8 +136,7 @@
      * Extracts the string to use for an event's label field
      * from a lib-jitsi-meet analytics event.
      * @param {Object} event - The lib-jitsi-meet analytics event.
-     * @returns {string} - The string to use for the 'label' of a Google
-     * Analytics event.
+     * @returns {string} - The string to use for the 'label' of an event
      * @private
      */
     Analytics.prototype._extractLabel = function(event) {
@@ -173,9 +171,8 @@
     };
 
     /**
-     * This is the entry point of the API. The function sends an event to
-     * google analytics. The format of the event is described in
-     * AnalyticsAdapter in lib-jitsi-meet.
+     * This is the entry point of the API. The function sends an event.
+     * The format of the event is described in AnalyticsAdapter lib-jitsi-meet.
      * @param {Object} event - the event in the format specified by
      * lib-jitsi-meet.
      */
