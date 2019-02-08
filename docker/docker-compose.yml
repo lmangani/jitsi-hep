@@ -108,18 +108,43 @@ services:
         networks:
             meet.jitsi:
 
-    pastash:
-      image: qxip/pastash-loki
-      container_name: pastash
-      expose:
-        - 9069
-      ports:
-        - '9069:9069'
+#    pastash:
+#      image: qxip/pastash-loki
+#      container_name: pastash
+#      expose:
+#        - 9069
+#      ports:
+#        - '9069:9069'
+#      volumes:
+#        - ${CONFIG}/web:/config
+#        - ./config/pastash.conf:/pastash.conf
+#      depends_on:
+#        - web
+#        - loki
+#      networks:
+#        meet.jitsi:
+
+
+    hepop:
+      image: sipcapture/hepop:jitsi
+      container_name: hepop
       volumes:
         - ${CONFIG}/web:/config
-        - ./config/pastash.conf:/pastash.conf
+        - ./config/myconfig.js:/app/myconfig.js
+      ports:
+        - "9069:8080"
+        - "9060:9060"
+        - "9060:9060/udp"
+      environment:
+        HEPOP_DEBUG: 'true'
+      restart: unless-stopped
+      expose:
+        - 9069
+        - 9060
       depends_on:
         - web
+        - db
+        - telegraf
         - loki
       networks:
         meet.jitsi:
@@ -150,6 +175,7 @@ services:
       restart: unless-stopped
       depends_on:
         - db
+        - influxdb
       networks:
         meet.jitsi:
   
@@ -173,6 +199,77 @@ services:
         retries: 30
       networks:
         meet.jitsi:
+
+    telegraf:
+      container_name: telegraf
+      image: telegraf:1.8-alpine
+      restart: unless-stopped
+      volumes:
+        - ./config/telegraf.conf:/etc/telegraf/telegraf.conf
+      expose: 
+        - 8094
+        - 8088
+      ports:
+        - "8094:8094/udp"
+        - "8088:8088/tcp"
+        - "8092:8092/udp"
+        - "8125:8125/udp"
+      depends_on:
+        - influxdb
+      networks:
+        meet.jitsi:
+
+    influxdb:
+      container_name: influxdb
+      image: influxdb:1.6-alpine
+      volumes:
+        - ./influx:/var/lib/influxdb
+      ports:
+        - "8086:8086"
+      expose:
+        - 8086
+      networks:
+        meet.jitsi:
+
+    chronograf:
+      image: chronograf:1.6
+      environment:
+        INFLUXDB_URL: http://influxdb:8086
+      expose:
+        - 8888
+      ports:
+        - "8888:8888"
+      links:
+        - influxdb
+      networks:
+        meet.jitsi:
+
+
+    provisioning:
+      image: alpine:latest
+      networks:
+        meet.jitsi:
+      depends_on:
+        - influxdb
+      links:
+        - influxdb
+      command: 
+        - /bin/sh
+        - -c
+        - |
+          apk add --no-cache curl;
+          echo Waiting for influxdb API ...;
+          while ! nc -z influxdb 8086;
+          do
+            sleep 2;
+          done;
+          echo InfluxDB Retention Policy push ...;
+          curl -G http://influxdb:8086/query --data-urlencode 'q=CREATE DATABASE homer_data'
+          curl -G http://influxdb:8086/query --data-urlencode 'q=CREATE DATABASE homer'
+          curl -G http://influxdb:8086/query --data-urlencode 'q=CREATE DATABASE hep'
+          echo Provisioning completed! Exiting ...;
+          poweroff;
+
 
 # Custom network so all services can communicate using a FQDN
 networks:
