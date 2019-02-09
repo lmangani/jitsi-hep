@@ -126,7 +126,7 @@ services:
 
 
     hepop:
-      image: sipcapture/hepop:jitsi
+      image: sipcapture/hepop:master
       container_name: hepop
       volumes:
         - ${CONFIG}/web:/config
