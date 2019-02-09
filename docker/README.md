@@ -5,6 +5,8 @@ This compose demo outlines the basics to connect browser-side events to an HEP c
 docker-compose up -d
 ```
 
+![ezgif com-optimize 23](https://user-images.githubusercontent.com/1423657/52521517-7f99e300-2c78-11e9-9df5-dbf3e739108c.gif)
+
 ## Components
 * Jitsi Meet Stack (https TCP/8443) + HEP Analytics Handler
 * HOMER 7 Stack w/ Loki Support (http TCP/9080)
