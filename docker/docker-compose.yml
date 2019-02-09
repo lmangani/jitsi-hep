@@ -9,7 +9,7 @@ services:
             - '${HTTPS_PORT}:443'
         volumes:
             - ${CONFIG}/web:/config
-            - ./config/config.js:/config/web/config.js
+            - ./config/config.js:/config/config.js
         environment:
             - ENABLE_AUTH
             - ENABLE_GUESTS
@@ -108,23 +108,6 @@ services:
         networks:
             meet.jitsi:
 
-#    pastash:
-#      image: qxip/pastash-loki
-#      container_name: pastash
-#      expose:
-#        - 9069
-#      ports:
-#        - '9069:9069'
-#      volumes:
-#        - ${CONFIG}/web:/config
-#        - ./config/pastash.conf:/pastash.conf
-#      depends_on:
-#        - web
-#        - loki
-#      networks:
-#        meet.jitsi:
-
-
     hepop:
       image: sipcapture/hepop:master
       container_name: hepop
@@ -135,8 +118,6 @@ services:
         - "9069:8080"
         - "9060:9060"
         - "9060:9060/udp"
-      environment:
-        HEPOP_DEBUG: 'true'
       restart: unless-stopped
       expose:
         - 9069
@@ -144,7 +125,6 @@ services:
       depends_on:
         - web
         - db
-        - telegraf
         - loki
       networks:
         meet.jitsi:
@@ -200,28 +180,9 @@ services:
       networks:
         meet.jitsi:
 
-    telegraf:
-      container_name: telegraf
-      image: telegraf:1.8-alpine
-      restart: unless-stopped
-      volumes:
-        - ./config/telegraf.conf:/etc/telegraf/telegraf.conf
-      expose: 
-        - 8094
-        - 8088
-      ports:
-        - "8094:8094/udp"
-        - "8088:8088/tcp"
-        - "8092:8092/udp"
-        - "8125:8125/udp"
-      depends_on:
-        - influxdb
-      networks:
-        meet.jitsi:
-
     influxdb:
       container_name: influxdb
-      image: influxdb:1.6-alpine
+      image: influxdb:1.7-alpine
       volumes:
         - ./influx:/var/lib/influxdb
       ports:
@@ -232,7 +193,7 @@ services:
         meet.jitsi:
 
     chronograf:
-      image: chronograf:1.6
+      image: chronograf:1.7-alpine
       environment:
         INFLUXDB_URL: http://influxdb:8086
       expose:
@@ -264,8 +225,6 @@ services:
             sleep 2;
           done;
           echo InfluxDB Retention Policy push ...;
-          curl -G http://influxdb:8086/query --data-urlencode 'q=CREATE DATABASE homer_data'
-          curl -G http://influxdb:8086/query --data-urlencode 'q=CREATE DATABASE homer'
           curl -G http://influxdb:8086/query --data-urlencode 'q=CREATE DATABASE hep'
           echo Provisioning completed! Exiting ...;
           poweroff;
