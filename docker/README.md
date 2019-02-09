@@ -15,6 +15,8 @@ docker-compose up -d
 * InfluxDB (http TCP/8086)
 * Chronograf (http TCP/8888)
 
+![image](https://user-images.githubusercontent.com/1423657/52523328-6e5cd080-2c90-11e9-9e8d-02da54864c62.png)
+
 ## Jitsi Web Config
 This demo leverages the Jitsi web `"analytics handlers"` to inject an event shipper into the live application:
 ```
