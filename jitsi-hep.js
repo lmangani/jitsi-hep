@@ -51,15 +51,15 @@
          /**
          * HEP Analytics
          */
-        var session = 'unknown';
-	var userProps = false;
+        var session = false;
+	window.userProps = false;
         const hep = function(type,event,subset,data){
 
             // Attempt using device_id as Client identifier for statistics
             if(data.attributes && data.attributes.device_id) session = data.attributes.device_id;
             if(session) data.device_id = session;
             if(session_ip) data.ip = session_ip;
-	    if(userProps) data.user = userProps;
+	    if(window.userProps) data.user = window.userProps;
 
             // SHIP TO LOCAL/REMOTE COLLECTOR
              fetch("https://" + (window.location.hostname || "hep.hepic.tel") + ":9069", { 
@@ -166,7 +166,7 @@
      * @private
      */
     Analytics.prototype.setUserProperties = function(newProps) {
-	userProps = newProps
+	if (newProps) window.userProps = newProps
         return;
     };
 
