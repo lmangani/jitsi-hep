@@ -20,9 +20,9 @@ docker-compose up -d
 ## Jitsi Web Config
 This demo leverages the Jitsi web `"analytics handlers"` to inject an event shipper into the live application:
 ```
-    analyticsScriptUrls: [
-         "https://gitcdn.xyz/repo/lmangani/jitsi-hep/master/jitsi-hep.js"
-     ],
+  analyticsScriptUrls: [
+	 "https://cdn.jsdelivr.net/gh/lmangani/jitsi-hep@latest/jitsi-hep.js"
+  ],
 ```
 
 ### Notice
