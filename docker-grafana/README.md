@@ -12,12 +12,14 @@ This compose demo outlines the basics to connect browser-side events to an HEP c
 * LOKI (http TCP/3100)
 * GRAFANA (http TCP/3000)
 
+![image](https://user-images.githubusercontent.com/1423657/52523328-6e5cd080-2c90-11e9-9e8d-02da54864c62.png)
+
 ## Jitsi Web Config
 This demo leverages the Jitsi web `"analytics handlers"` to inject an event shipper into the live application:
 ```
-    analyticsScriptUrls: [
-         "https://gitcdn.xyz/repo/lmangani/jitsi-hep/master/jitsi-hep.js"
-     ],
+  analyticsScriptUrls: [
+	 "https://cdn.jsdelivr.net/gh/lmangani/jitsi-hep@latest/jitsi-hep.js"
+  ],
 ```
 
 ### Notice
