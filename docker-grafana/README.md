@@ -18,7 +18,7 @@ This compose demo outlines the basics to connect browser-side events to an HEP c
 This demo leverages the Jitsi web `"analytics handlers"` to inject an event shipper into the live application:
 ```
   analyticsScriptUrls: [
-	 "https://cdn.jsdelivr.net/gh/lmangani/jitsi-hep@latest/jitsi-hep.js"
+	 "https://cdn.jsdelivr.net/gh/lmangani/jitsi-hep@production/jitsi-hep.js"
   ],
 ```
 
