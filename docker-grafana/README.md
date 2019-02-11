@@ -1,6 +1,9 @@
 # Jitsi MEET Homer
 This compose demo outlines the basics to connect browser-side events to an HEP collector w/ Loki support
 
+![image](https://user-images.githubusercontent.com/1423657/52583339-a4848680-2e2f-11e9-865a-5b2a26ad5169.png)
+
+
 ## Components
 * JITSI MEET Stack (https TCP/8443)
 * HOMER 7 HEPOP (http TCP/9080)
