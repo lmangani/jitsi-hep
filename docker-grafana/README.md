@@ -3,6 +3,8 @@ This compose demo outlines the basics to connect browser-side events to an HEP c
 
 ![image](https://user-images.githubusercontent.com/1423657/52583339-a4848680-2e2f-11e9-865a-5b2a26ad5169.png)
 
+![image](https://user-images.githubusercontent.com/1423657/52584363-28d80900-2e32-11e9-90fb-ec412a177879.png)
+
 
 ## Components
 * JITSI MEET Stack (https TCP/8443)
